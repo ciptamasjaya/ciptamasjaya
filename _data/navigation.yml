@@ -1,0 +1,31 @@
+# Main navigation
+main:
+  - title: "Beranda"
+    url: /
+  - title: "Layanan"
+    url: /layanan/
+  - title: "Artikel"
+    url: /artikel/
+  - title: "Tentang Kami"
+    url: /about/
+  - title: "Kontak"
+    url: /kontak/
+
+# Sidebar navigation for services
+services:
+  - title: "Layanan Kami"
+    children:
+      - title: "Pesawat Angkat & Angkut"
+        url: /pesawat-angkat-angkut/
+      - title: "Pesawat Uap & Bejana Tekan"
+        url: /pesawat-uap-bejana-tekan/
+      - title: "Instalasi Listrik & Penyalur Petir"
+        url: /instalasi-listrik-penyalur-petir/
+      - title: "Instalasi Proteksi Kebakaran"
+        url: /instalasi-proteksi-kebakaran/
+      - title: "Elevator & Eskalator"
+        url: /elevator-eskalator/
+      - title: "Pesawat Tenaga & Produksi"
+        url: /pesawat-tenaga-produksi/
+      - title: "Pengesahan Gambar Kemnaker"
+        url: /pengesahan-gambar-kemnaker/

@@ -1,0 +1,148 @@
+{% comment %}
+  Custom Related Posts Component - SEO Optimized
+  Placed INSIDE <article> tag for better internal linking SEO
+  Similar to WordPress related posts placement
+{% endcomment %}
+
+{% assign related_posts_count = 0 %}
+{% assign max_related = 4 %}
+
+<div class="related-content-block-seo">
+  <h2 class="related-title-seo">📚 Artikel Terkait</h2>
+
+  <div class="related-items-seo">
+    {% for post in site.related_posts limit: 4 %}
+      <div class="related-item-seo">
+        <h3 class="related-item-title-seo">
+          <a href="{{ post.url | relative_url }}" rel="bookmark">{{ post.title }}</a>
+        </h3>
+        {% if post.excerpt %}
+          <p class="related-item-desc-seo">{{ post.excerpt | strip_html | truncatewords: 25 }}</p>
+        {% endif %}
+        {% if post.date %}
+          <p class="related-item-date-seo">
+            <i class="far fa-calendar-alt"></i> {{ post.date | date: "%d %B %Y" }}
+          </p>
+        {% endif %}
+        {% if post.categories %}
+          <p class="related-item-category-seo">
+            <i class="fas fa-folder"></i> {{ post.categories | first }}
+          </p>
+        {% endif %}
+      </div>
+      {% assign related_posts_count = related_posts_count | plus: 1 %}
+    {% endfor %}
+
+    {% if related_posts_count == 0 %}
+      <p style="text-align: center; color: #888;">Belum ada artikel terkait.</p>
+    {% endif %}
+  </div>
+</div>
+
+<style>
+/* Override theme width restrictions */
+.page__related {
+  float: none !important;
+  width: 100% !important;
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+}
+
+/* SEO-Optimized Related Content Styling */
+.related-content-block-seo {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 0;
+  padding: 40px 20px;
+  margin: 50px -20px 30px -20px;
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+  width: auto;
+  max-width: none;
+}
+
+.related-title-seo {
+  color: #ffffff !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3) !important;
+  padding-bottom: 15px !important;
+  margin-bottom: 25px !important;
+  margin-top: 0 !important;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.related-items-seo {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+.related-item-seo {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 25px;
+  transition: all 0.3s ease;
+  border-left: 4px solid #667eea;
+  max-width: 100%;
+}
+
+.related-item-seo:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-left-color: #764ba2;
+}
+
+.related-item-title-seo {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.related-item-title-seo a {
+  color: #0066cc !important;
+  text-decoration: none;
+  display: block;
+  font-weight: 600;
+}
+
+.related-item-title-seo a:hover {
+  color: #764ba2 !important;
+  text-decoration: none;
+}
+
+.related-item-desc-seo {
+  color: #555;
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.related-item-date-seo,
+.related-item-category-seo {
+  color: #888;
+  font-size: 0.85em;
+  margin: 5px 0;
+}
+
+.related-item-date-seo i,
+.related-item-category-seo i {
+  margin-right: 5px;
+  color: #667eea;
+}
+
+@media (max-width: 768px) {
+  .related-content-block-seo {
+    padding: 30px 15px;
+    margin: 30px -15px 20px -15px;
+  }
+
+  .related-item-seo {
+    padding: 20px;
+  }
+}
+
+/* Additional SEO optimization: Make links more prominent for crawlers */
+.related-item-title-seo a {
+  /* Internal links within article content - high SEO value */
+  font-family: inherit;
+  line-height: 1.4;
+}
+</style>

@@ -1,0 +1,126 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+title: PT. Cipta Mas Jaya
+email: info@ciptamasjaya.co.id
+description: >- # this means to ignore newlines until "baseurl:"
+  Mengenal Jasa Riksa Uji PJK3 PT. Cipta Mas Jaya
+baseurl: "" # PENTING: kosong untuk user site (ciptamasjaya.github.io)
+url: "https://ciptamasjaya.github.io" # the base hostname & protocol for your site
+twitter_username: ""
+github_username: ciptamasjaya
+
+# Build settings
+remote_theme: mmistakes/minimal-mistakes@4.24.0  # Use remote_theme for GitHub Pages
+
+# Permalink style - use categories with dashes
+permalink: /:categories/:year/:month/:day/:title:output_ext
+
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-include-cache
+  - jekyll-paginate
+  - jekyll-gist
+
+# Minimal Mistakes Theme Settings
+minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
+
+# Site Author
+author:
+  name: "PT. Cipta Mas Jaya"
+  avatar: # "/assets/images/logo.png" # Tambahkan nanti
+  bio: "PJK3 Riksa Uji Tersertifikasi - Layanan Inspeksi Keselamatan Pesawat Angkat, Bejana Tekan, dan Instalasi K3"
+  location: "Indonesia"
+  email: "info@ciptamasjaya.co.id"
+  links:
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.ciptamasjaya.co.id"
+    - label: "Phone"
+      icon: "fas fa-fw fa-phone"
+      url: "tel:08568258841"
+
+# Site Footer
+footer:
+  links:
+    - label: "Email"
+      icon: "fas fa-fw fa-envelope-square"
+      url: "mailto:info@ciptamasjaya.co.id"
+    - label: "Website"
+      icon: "fas fa-fw fa-link"
+      url: "https://www.ciptamasjaya.co.id"
+
+# Reading Files
+include:
+  - .htaccess
+  - _pages
+
+# Exclude from processing
+exclude:
+  - docs/
+  - TODO/
+  - tasks/
+  - vendor/
+  - .bundle/
+  - Gemfile
+  - Gemfile.lock
+  - node_modules/
+  - README.md
+  - "*.sh"
+  - _backup_before_*/
+
+# Archives
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/
+
+# SEO Related
+locale: "id_ID"
+og_image: # /assets/images/site-logo.png
+social:
+  type: Organization
+  name: PT. Cipta Mas Jaya
+  links:
+    - "https://ciptamasjaya.github.io"
+
+# Defaults
+defaults:
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: false
+      share: true
+      related: true
+      show_date: true
+  # all markdown files
+  - scope:
+      path: ""
+    values:
+      layout: single
+      author_profile: false
+      sidebar:
+        nav: "main"

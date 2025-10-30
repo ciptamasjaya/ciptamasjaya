@@ -1,0 +1,95 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@charset "utf-8";
+
+@import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
+@import "minimal-mistakes"; // main partials
+
+/* Custom: Wider content area for all pages */
+
+/* Main content area - increase max-width for wider content blocks */
+#main {
+  @media (min-width: 80em) {
+    max-width: 1400px !important;
+  }
+}
+
+/* Masthead (header/menu) - sticky top and wider */
+.masthead {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.masthead__inner-wrap {
+  @media (min-width: 80em) {
+    max-width: 1400px !important;
+  }
+}
+
+/* Hero section wrapper */
+.page__hero--overlay .wrapper {
+  @media (min-width: 80em) {
+    max-width: 1400px !important;
+  }
+}
+
+/* Footer - match the header width */
+.page__footer footer {
+  @media (min-width: 80em) {
+    max-width: 1400px !important;
+  }
+}
+
+/* Breadcrumbs */
+.breadcrumbs {
+  @media (min-width: 80em) {
+    max-width: 1400px !important;
+  }
+}
+
+/* Custom CSS for equal height cards */
+.feature__wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+}
+
+.feature__item {
+  display: flex;
+  flex-direction: column;
+}
+
+.feature__item .archive__item {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.feature__item .archive__item-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.feature__item .archive__item-title {
+  min-height: 3em;
+  display: flex;
+  align-items: center;
+}
+
+.feature__item .archive__item-excerpt {
+  flex-grow: 1;
+  display: flex;
+  align-items: flex-start;
+}
+
+.feature__item .archive__item-body > p:last-child {
+  margin-top: auto;
+  padding-top: 1em;
+}

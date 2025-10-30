@@ -1,0 +1,126 @@
+{% comment %}
+  Related Content Component
+  Mencari artikel terkait berdasarkan category dan equipment
+{% endcomment %}
+
+{% assign related_posts = "" | split: "" %}
+{% assign max_related = 4 %}
+
+{% comment %} Cari artikel dengan category yang sama {% endcomment %}
+{% for post in site.pages %}
+  {% if post.url != page.url and post.category and post.category == page.category %}
+    {% assign related_posts = related_posts | push: post %}
+  {% endif %}
+{% endfor %}
+
+{% comment %} Jika kurang dari 4, cari dari equipment yang sama {% endcomment %}
+{% if related_posts.size < max_related %}
+  {% for post in site.pages %}
+    {% if post.url != page.url and post.equipment and post.equipment == page.equipment %}
+      {% unless related_posts contains post %}
+        {% assign related_posts = related_posts | push: post %}
+      {% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endif %}
+
+{% if related_posts.size > 0 %}
+<div class="related-content-block">
+  <h2 class="related-title">📚 Artikel Terkait</h2>
+  <div class="related-items">
+    {% for related in related_posts limit: max_related %}
+    <div class="related-item">
+      <h3 class="related-item-title">
+        <a href="{{ related.url | relative_url }}">{{ related.title }}</a>
+      </h3>
+      {% if related.description %}
+      <p class="related-item-desc">{{ related.description }}</p>
+      {% endif %}
+      {% if related.date %}
+      <p class="related-item-date">📅 {{ related.date | date: "%d %B %Y" }}</p>
+      {% endif %}
+    </div>
+    {% endfor %}
+  </div>
+</div>
+
+<style>
+.related-content-block {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  padding: 30px;
+  margin: 50px 0 30px 0;
+  box-shadow: 0 10px 25px rgba(102, 126, 234, 0.2);
+}
+
+.related-title {
+  color: #ffffff !important;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.3) !important;
+  padding-bottom: 15px !important;
+  margin-bottom: 25px !important;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.related-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.related-item {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  padding: 20px;
+  transition: all 0.3s ease;
+  border-left: 4px solid #667eea;
+}
+
+.related-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+  border-left-color: #764ba2;
+}
+
+.related-item-title {
+  margin-top: 0;
+  margin-bottom: 10px;
+  font-size: 1.1em;
+}
+
+.related-item-title a {
+  color: #0066cc !important;
+  text-decoration: none;
+  display: block;
+}
+
+.related-item-title a:hover {
+  color: #764ba2 !important;
+  text-decoration: none;
+}
+
+.related-item-desc {
+  color: #555;
+  font-size: 0.9em;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.related-item-date {
+  color: #888;
+  font-size: 0.85em;
+  margin: 0;
+  font-style: italic;
+}
+
+@media (max-width: 768px) {
+  .related-items {
+    grid-template-columns: 1fr;
+  }
+
+  .related-content-block {
+    padding: 20px;
+  }
+}
+</style>
+{% endif %}
